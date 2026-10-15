@@ -72,3 +72,102 @@ deep_agent = create_deep_agent(
     请确保在回答中引用可靠来源，并对搜索结果进行分析和总结。
     """
 )
+
+result = deep_agent.invoke(
+    {"messages": [{"role": "user", "content": "请帮我搜索关于人工智能在医疗领域的最新应用，并提供详细的分析和总结。"}]})
+
+print(result["messages"][-1].content)
+
+
+
+"""
+{
+  'messages': [
+    HumanMessage(
+        content='请帮我搜索关于人工智能在医疗领域的最新应用，并提供详细的分析和总结。',
+        id='64f4f0ba-f96c-49e7-b2b1-d0566114e1bb'
+    ),
+
+    AIMessage(
+        content='我将为您搜索关于人工智能在医疗领域的最新应用。让我先进行多角度的搜索。',
+        response_metadata={
+            'model_provider': 'openai',
+            'model_name': 'deepseek-flash',
+            'finish_reason': 'tool_calls',
+            'token_usage': {...}
+        },
+        tool_calls=[
+            {name: 'internet_search', args: {query: '人工智能在医疗领域的最新应用 2024 2025', max_results: 8, topic: 'general'}, id: 'call_00_...', type: 'tool_call'},
+            {name: 'internet_search', args: {query: 'AI in healthcare latest applications 2025', max_results: 8, topic: 'general'}, id: 'call_01_...', type: 'tool_call'},
+            {name: 'internet_search', args: {query: 'generative AI healthcare clinical applications breakthrough', max_results: 8, topic: 'general'}, id: 'call_02_...', type: 'tool_call'}
+        ]
+    ),
+
+    ToolMessage(
+        content='{"query": "...", "results": [ {url, title, content, score, id}, ... ]}',
+        name='internet_search',
+        tool_call_id='call_00_...'
+    ),
+    ToolMessage(
+        content='{"query": "...", "results": [ {url, title, content, score, id}, ... ]}',
+        name='internet_search',
+        tool_call_id='call_01_...'
+    ),
+    ToolMessage(
+        content='{"query": "...", "results": [ {url, title, content, score, id}, ... ]}',
+        name='internet_search',
+        tool_call_id='call_02_...'
+    ),
+
+    AIMessage(
+        content='我已获得初步资料。让我进一步搜索几个关键细分领域以获得更深入的信息。',
+        response_metadata={
+            'model_provider': 'openai',
+            'model_name': 'deepseek-flash',
+            'finish_reason': 'tool_calls',
+            'token_usage': {...}
+        },
+        tool_calls=[
+            {name: 'internet_search', args: {query: 'AI medical imaging diagnosis FDA approved 2025 breakthrough', max_results: 6, topic: 'general'}, id: 'call_00_...', type: 'tool_call'},
+            {name: 'internet_search', args: {query: 'AI drug discovery protein structure 2025 breakthrough', max_results: 6, topic: 'general'}, id: 'call_01_...', type: 'tool_call'},
+            {name: 'internet_search', args: {query: '中国 医疗大模型 应用 2025 医院', max_results: 6, topic: 'general'}, id: 'call_02_...', type: 'tool_call'},
+            {name: 'internet_search', args: {query: 'AI agent healthcare ambient scribe 2025 adoption', max_results: 6, topic: 'general'}, id: 'call_03_...', type: 'tool_call'}
+        ]
+    ),
+
+    ToolMessage(content='{"query": "...", "results": [...]}', name='internet_search', tool_call_id='call_00_...'),
+    ToolMessage(content='{"query": "...", "results": [...]}', name='internet_search', tool_call_id='call_01_...'),
+    ToolMessage(content='{"query": "...", "results": [...]}', name='internet_search', tool_call_id='call_02_...'),
+    ToolMessage(content='{"query": "...", "results": [...]}', name='internet_search', tool_call_id='call_03_...'),
+
+    AIMessage(
+        content='让我再补充搜索关于挑战、监管和投资方面的信息，以提供更全面的分析。',
+        response_metadata={
+            'model_provider': 'openai',
+            'model_name': 'deepseek-flash',
+            'finish_reason': 'tool_calls',
+            'token_usage': {...}
+        },
+        tool_calls=[
+            {name: 'internet_search', args: {query: 'AI healthcare challenges ethics regulation 2025 bias data privacy', max_results: 6, topic: 'general'}, id: 'call_00_...', type: 'tool_call'},
+            {name: 'internet_search', args: {query: 'AI healthcare investment funding market size 2025', max_results: 6, topic: 'finance'}, id: 'call_01_...', type: 'tool_call'}
+        ]
+    ),
+
+    ToolMessage(content='{"query": "...", "results": [...]}', name='internet_search', tool_call_id='call_00_...'),
+    ToolMessage(content='{"query": "...", "results": [...]}', name='internet_search', tool_call_id='call_01_...'),
+
+    AIMessage(
+        content='# 人工智能在医疗领域的最新应用：深度分析与总结 ...（最终报告正文）',
+        response_metadata={
+            'model_provider': 'openai',
+            'model_name': 'deepseek-flash',
+            'finish_reason': 'stop',
+            'token_usage': {...}
+        },
+        tool_calls=[]
+    )
+  ],
+  'files': {}
+}
+"""
